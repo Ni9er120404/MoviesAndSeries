@@ -16,7 +16,7 @@ namespace MoviesAndSeries.Server.API
 			_ = builder.Services.AddEndpointsApiExplorer();
 			_ = builder.Services.AddSwaggerGen();
 
-			WebApplication app = builder.Build();
+			using WebApplication app = builder.Build();
 
 			if (app.Environment.IsDevelopment())
 			{
