@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MoviesAndSeries.Server.API.Data;
+
 namespace MoviesAndSeries.Server.API
 {
 	public class Program
@@ -6,6 +9,9 @@ namespace MoviesAndSeries.Server.API
 		{
 			WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+			string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+			_ = builder.Services.AddDbContext<Context>(options => options.UseNpgsql());
 			_ = builder.Services.AddControllers();
 			_ = builder.Services.AddEndpointsApiExplorer();
 			_ = builder.Services.AddSwaggerGen();
