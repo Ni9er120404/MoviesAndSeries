@@ -11,7 +11,7 @@ namespace MoviesAndSeries.Server.API
 
 			string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-			_ = builder.Services.AddDbContext<Context>(options => options.UseNpgsql());
+			_ = builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
 			_ = builder.Services.AddControllers();
 			_ = builder.Services.AddEndpointsApiExplorer();
 			_ = builder.Services.AddSwaggerGen();
