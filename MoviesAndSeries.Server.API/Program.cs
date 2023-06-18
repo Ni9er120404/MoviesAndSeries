@@ -9,7 +9,7 @@ namespace MoviesAndSeries.Server.API
 		{
 			WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-			string? connectionString = builder.Configuration.GetConnectionString("DefaultConnectionForDocker");
+			string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 			_ = builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
 			_ = builder.Services.AddControllers();
