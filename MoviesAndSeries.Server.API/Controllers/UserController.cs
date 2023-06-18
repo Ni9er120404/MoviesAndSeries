@@ -22,21 +22,28 @@ namespace MoviesAndSeries.Server.API.Controllers
 
 			if (user is not null)
 			{
-				return NoContent();
+				return Ok();
 			}
 			else
 			{
-				return NotFound();
+				return NotFound("User not found");
 			}
 		}
 
-		[HttpPost(Name = nameof(CreateUser))]
-		public async Task<ActionResult> CreateUser(User user)
+		[HttpPost(Name = nameof(UserRegistrationAsync))]
+		public async Task<ActionResult> UserRegistrationAsync(UserInformation userInformation)
 		{
-			if (user is not null)
+			if (userInformation is not null)
 			{
-				_ = _context.Users.Add(user);
+				User user = new()
+				{
+					Id = userInformation.Id,
+					UserName = userInformation.UserName,
+					Password = userInformation.Password,
+					Email = userInformation.Email
+				};
 
+				_ = await _context.Users.AddAsync(user);
 				_ = await _context.SaveChangesAsync();
 
 				return Ok("A new user has been created");
@@ -46,7 +53,6 @@ namespace MoviesAndSeries.Server.API.Controllers
 				return BadRequest("User creation error");
 			}
 		}
-
 
 		[HttpDelete("{id}", Name = nameof(DeleteUser))]
 		public async Task<ActionResult> DeleteUser(Guid id)
@@ -59,11 +65,11 @@ namespace MoviesAndSeries.Server.API.Controllers
 
 				_ = await _context.SaveChangesAsync();
 
-				return NoContent();
+				return Ok("The user has been deleted");
 			}
 			else
 			{
-				return NotFound();
+				return NotFound("User not found");
 			}
 		}
 	}
