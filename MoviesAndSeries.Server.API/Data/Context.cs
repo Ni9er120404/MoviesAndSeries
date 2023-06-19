@@ -12,13 +12,13 @@ namespace MoviesAndSeries.Server.API.Data
 		}
 
 
-		public DbSet<User> Users { get; set; }
+		public DbSet<User>? Users { get; set; }
 
-		public DbSet<Movie> Movies { get; set; }
+		public DbSet<Movie>? Movies { get; set; }
 
-		public DbSet<Series> Series { get; set; }
+		public DbSet<Series>? Series { get; set; }
 
-		public DbSet<Episode> Episodes { get; set; }
+		public DbSet<Episode>? Episodes { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

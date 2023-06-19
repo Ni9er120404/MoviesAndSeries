@@ -18,7 +18,7 @@ namespace MoviesAndSeries.Server.API.Controllers
 		[HttpGet("{id}", Name = nameof(GetUser))]
 		public ActionResult GetUser(Guid id)
 		{
-			User? user = _context.Users.FirstOrDefault(u => u.Id == id);
+			User? user = _context.Users!.FirstOrDefault(u => u.Id == id);
 
 			if (user is not null)
 			{
@@ -43,7 +43,7 @@ namespace MoviesAndSeries.Server.API.Controllers
 					Email = userInformation.Email
 				};
 
-				_ = await _context.Users.AddAsync(user);
+				_ = await _context.Users!.AddAsync(user);
 				_ = await _context.SaveChangesAsync();
 
 				return Ok("A new user has been created");
@@ -57,11 +57,11 @@ namespace MoviesAndSeries.Server.API.Controllers
 		[HttpDelete("{id}", Name = nameof(DeleteUser))]
 		public async Task<ActionResult> DeleteUser(Guid id)
 		{
-			User? user = _context.Users.FirstOrDefault(u => u.Id == id);
+			User? user = _context.Users!.FirstOrDefault(u => u.Id == id);
 
 			if (user is not null)
 			{
-				_ = _context.Users.Remove(user);
+				_ = _context.Users!.Remove(user);
 
 				_ = await _context.SaveChangesAsync();
 
