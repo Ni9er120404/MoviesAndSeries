@@ -10,7 +10,7 @@
 
 		public string? Image { get; set; }
 
-		public ushort? Rating { get; set; }
+		public double? Rating { get; set; }
 
 		public uint Duration { get; set; }
 	}

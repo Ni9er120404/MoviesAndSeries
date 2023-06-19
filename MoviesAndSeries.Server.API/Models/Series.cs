@@ -1,4 +1,6 @@
-﻿namespace MoviesAndSeries.Server.API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MoviesAndSeries.Server.API.Models
 {
 	public class Series : Information
 	{
@@ -18,6 +20,9 @@
 				return totalDuration;
 			}
 		}
+
+		[NotMapped]
+		public string? PosterId { get; set; }
 
 		public ushort? StartDate { get; set; }
 
